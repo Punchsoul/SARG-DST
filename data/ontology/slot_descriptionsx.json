@@ -1,0 +1,361 @@
+
+  {
+    "hotel-pricerange": {
+      "type_desc": "The budget category or price level for the accommodation.",
+      "question_desc": "What specific budget category (cheap, moderate, expensive) does the user explicitly request for the hotel?",
+      "contras_desc": "It indicates the budget category (cheap, moderate, expensive). NOT the exact price value (e.g., '100 pounds') and NOT the meal cost (restaurant-pricerange).",
+      "nli_desc": "[TRANSFER]: Concept is IDENTICAL to 'restaurant-pricerange'. [INTERACTION]: Distinguish Constraint vs. Inquiry. Only activate if user SETS a budget. Do NOT activate if user asks 'Is it expensive?'.",
+      "value": [
+        "cheap",
+        "moderate",
+        "expensive"
+      ]
+    },
+    "hotel-type": {
+      "type_desc": "The specific category of the accommodation facility.",
+      "question_desc": "Does the user intend to search for a specific facility type (hotel vs guesthouse)?",
+      "contras_desc": "CRITICAL: Distinguish between 'hotel' as a specific facility type and generic terms like 'accommodation' or 'place to stay'. Activate 'hotel' if the user specifically asks for a hotel. Activate 'guesthouse' if the user asks for a guesthouse. Do NOT activate if the user requests generic accommodation without specifying a type.",
+      "nli_desc": "[UNIQUE]: Categorical preference. [LOGIC]: 'Hotel' is a specific value, not a default. Detect if the user has a specific preference for the building type.",
+      "value": [
+        "hotel",
+        "guesthouse"
+      ]
+    },
+    "hotel-parking": {
+      "type_desc": "The requirement or availability of parking facilities at the hotel.",
+      "question_desc": "Does the user explicitly state a requirement for car parking facilities?",
+      "contras_desc": "It refers to car parking availability. NOT internet/wifi availability.",
+      "nli_desc": "[UNIQUE]: Domain-specific (Car Parking). No direct transfer. [INTERACTION]: Activate ONLY on requirement ('I need parking'). Do NOT activate on inquiry ('Do they have parking?').",
+      "value": [
+        "yes",
+        "no",
+        "free"
+      ]
+    },
+    "hotel-book stay": {
+      "type_desc": "The duration of the stay expressed in the number of nights.",
+      "question_desc": "How many nights is the user planning to stay for this reservation?",
+      "contras_desc": "It is the duration (quantity). NOT the start date (hotel-book day) or number of guests (hotel-book people).",
+      "nli_desc": "[UNIQUE]: Domain-specific (Duration). [LOGIC]: Distinguish from 'book day' (Start). Represents a quantity of time.",
+      "value": [
+        "(Open Slot) e.g. 3",
+        "(Open Slot) e.g. 5"
+      ]
+    },
+    "hotel-book day": {
+      "type_desc": "The starting day of the week for the hotel reservation.",
+      "question_desc": "On which specific day of the week does the user want the reservation to begin?",
+      "contras_desc": "It is the check-in day. NOT the duration of stay (nights) or the booking day for a restaurant.",
+      "nli_desc": "[TRANSFER]: Concept is IDENTICAL to 'restaurant-book day' and 'train-day'. Logic: Extract the specific date/day mentioned.",
+      "value": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ]
+    },
+    "hotel-book people": {
+      "type_desc": "The number of people included in the hotel reservation.",
+      "question_desc": "How many guests need to be accommodated in this reservation?",
+      "contras_desc": "It is the number of guests for the room. NOT the number of nights (book stay) or diners (restaurant-book people).",
+      "nli_desc": "[TRANSFER]: Concept is IDENTICAL to 'restaurant-book people' and 'train-book people'. Logic: Extract the count of humans.",
+      "value": [
+        "(Open Slot) e.g. 2",
+        "(Open Slot) e.g. 4"
+      ]
+    },
+    "hotel-area": {
+      "type_desc": "The specific constraint on the location or part of town for the hotel.",
+      "question_desc": "In which specific geographic area (north, south, east, west, centre) does the user want the hotel?",
+      "contras_desc": "CRITICAL: This is a search filter. The user must explicitly request to find a hotel IN a specific area. Do NOT activate if the area is mentioned merely as the user's current context or as part of a question about a specific hotel's location.",
+      "nli_desc": "[TRANSFER]: Logic SHARED with 'restaurant-area'. [INTERACTION]: Distinguish Search Constraint (Target) vs. Context/Inquiry (Reference). Only activate when the area is a search filter.",
+      "value": [
+        "centre",
+        "east",
+        "north",
+        "south",
+        "west"
+      ]
+    },
+    "hotel-stars": {
+      "type_desc": "The quality rating of the hotel expressed in stars.",
+      "question_desc": "What specific numeric star rating (0-5) does the user require?",
+      "contras_desc": "It is the numeric star rating (e.g., 4 stars). NOT the price range.",
+      "nli_desc": "[UNIQUE]: Domain-specific rating system. [INTERACTION]: Activate ONLY on requirement ('I want 4 stars'). Do NOT activate on inquiry ('How many stars?').",
+      "value": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "hotel-internet": {
+      "type_desc": "The requirement or availability of internet or wifi services.",
+      "question_desc": "Does the user explicitly require internet or wifi connectivity?",
+      "contras_desc": "It refers to wifi/internet. NOT parking availability.",
+      "nli_desc": "[UNIQUE]: Domain-specific feature. [INTERACTION]: Activate ONLY on requirement ('I need wifi'). Do NOT activate on inquiry ('Is wifi free?').",
+      "value": [
+        "yes",
+        "no",
+        "free"
+      ]
+    },
+    "hotel-name": {
+      "type_desc": "The specific proper name or title of the hotel.",
+      "question_desc": "What is the specific proper name of the hotel entity the user is referring to?",
+      "contras_desc": "It is the proper noun/name (e.g., 'Acorn Guest House'). NOT the general type (e.g., 'hotel', 'guesthouse') and NOT the area.",
+      "nli_desc": "[TRANSFER]: Logic SHARED with 'restaurant-name' and 'attraction-name'. [INTERACTION]: Distinguish 'Target Entity' (I want X) from 'Reference Entity' (I am near X).",
+      "value": [
+        "(Open Slot) e.g. 'Acorn Guest House'",
+        "(Open Slot) e.g. 'Gonville Hotel'"
+      ]
+    },
+    "train-destination": {
+      "type_desc": "The destination station or city where the train journey ends.",
+      "question_desc": "To which station or city does the user intend to travel?",
+      "contras_desc": "It is the arrival station. NOT the departure station and NOT the taxi destination.",
+      "nli_desc": "[TRANSFER]: Logic SIMILAR to 'taxi-destination' (Endpoint). [LOGIC]: Look for 'to X', 'into X'. Explicitly distinct from 'train-departure'.",
+      "value": [
+        "(Open Slot) e.g. 'Cambridge'",
+        "(Open Slot) e.g. 'London Kings Cross'"
+      ]
+    },
+    "train-day": {
+      "type_desc": "The day of the week on which the train journey takes place.",
+      "question_desc": "On which day of the week does the user wish to travel?",
+      "contras_desc": "It is the travel date. NOT the booking date for hotels or restaurants.",
+      "nli_desc": "[TRANSFER]: Concept is IDENTICAL to 'hotel-book day' and 'restaurant-book day'. Logic: Extract the date of the event.",
+      "value": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ]
+    },
+    "train-departure": {
+      "type_desc": "The departure station or city where the train journey starts.",
+      "question_desc": "From which station or city does the user intend to start the journey?",
+      "contras_desc": "It is the starting station. NOT the destination station and NOT the taxi pickup location.",
+      "nli_desc": "[TRANSFER]: Logic SIMILAR to 'taxi-departure' (Start point). [LOGIC]: Look for 'from X', 'leaving X'. Explicitly distinct from 'train-destination'.",
+      "value": [
+        "(Open Slot) e.g. 'Bishops Stortford'",
+        "(Open Slot) e.g. 'Ely'"
+      ]
+    },
+    "train-arriveby": {
+      "type_desc": "The specific deadline time by which the train must arrive at the destination.",
+      "question_desc": "What is the deadline time for the train to reach the destination?",
+      "contras_desc": "It is the arrival deadline constraint. NOT the departure time (leaveat).",
+      "nli_desc": "[TRANSFER]: Logic SHARED with 'taxi-arriveby'. [LOGIC]: Focus on END of journey time. Triggers: 'arrive by', 'get there by', 'reach by'.",
+      "value": [
+        "(Open Slot) e.g. '17:00'",
+        "(Open Slot) e.g. '09:45'"
+      ]
+    },
+    "train-book people": {
+      "type_desc": "The number of tickets or passengers for the train journey.",
+      "question_desc": "How many tickets or passengers are required for this trip?",
+      "contras_desc": "It is the number of passengers. NOT the party size for a restaurant or hotel.",
+      "nli_desc": "[TRANSFER]: Concept is IDENTICAL to 'hotel-book people'. Logic: Extract the count of travelers.",
+      "value": [
+        "(Open Slot) e.g. 1",
+        "(Open Slot) e.g. 6"
+      ]
+    },
+    "train-leaveat": {
+      "type_desc": "The specific time after which the train should depart.",
+      "question_desc": "At what time (or after what time) does the user wish to start the journey?",
+      "contras_desc": "It is the departure time constraint. NOT the arrival deadline (arriveby).",
+      "nli_desc": "[TRANSFER]: Logic SHARED with 'taxi-leaveat'. [LOGIC]: Focus on START of journey time. Triggers: 'leave at', 'depart after'.",
+      "value": [
+        "(Open Slot) e.g. '08:15'",
+        "(Open Slot) e.g. '21:30'"
+      ]
+    },
+    "attraction-area": {
+      "type_desc": "The specific constraint on the location or part of town for the attraction.",
+      "question_desc": "In which geographic area (centre, north, etc.) is the attraction located?",
+      "contras_desc": "It is a location constraint. NOT the name of the attraction.",
+      "nli_desc": "[TRANSFER]: Logic SHARED with 'hotel-area' (Static Filter). [LOGIC]: Describes where the place IS, not movement.",
+      "value": [
+        "centre",
+        "east",
+        "north",
+        "south",
+        "west"
+      ]
+    },
+    "attraction-name": {
+      "type_desc": "The specific proper name or title of the attraction.",
+      "question_desc": "What is the specific proper name of the attraction entity?",
+      "contras_desc": "It is the proper name (e.g., 'Museum of Zoology'). NOT the type of attraction (e.g., 'museum').",
+      "nli_desc": "[TRANSFER]: Logic SHARED with 'hotel-name'. [INTERACTION]: Distinguish valid Name from Type description.",
+      "value": [
+        "(Open Slot) e.g. 'Fitzwilliam Museum'",
+        "(Open Slot) e.g. 'All Saints Church'"
+      ]
+    },
+    "attraction-type": {
+      "type_desc": "The category or genre of the attraction or venue.",
+      "question_desc": "What specific category, genre, or type of venue is the user interested in?",
+      "contras_desc": "It is the category (e.g., museum, park). NOT the specific name of the place.",
+      "nli_desc": "[UNIQUE]: Domain-specific ontology. [NLU FOCUS]: Requires mapping generic user descriptions (e.g. 'place to swim') to defined categories (e.g. 'swimming pool').",
+      "value": [
+        "museum",
+        "park",
+        "college",
+        "cinema",
+        "theatre",
+        "church",
+        "swimming pool",
+        "night club",
+        "boat",
+        "gallery",
+        "architecture",
+        "entertainment",
+        "sports",
+        "multiple sports",
+        "concerthall"
+      ]
+    },
+    "restaurant-food": {
+      "type_desc": "The specific cuisine or culinary style served at the restaurant.",
+      "question_desc": "What specific cuisine or food style is the user explicitly requesting?",
+      "contras_desc": "It refers to the food style (e.g., Italian). NOT the name of the restaurant or the price range.",
+      "nli_desc": "[UNIQUE]: Domain-specific logic. [INTERACTION]: Activate ONLY on requirement ('I want Italian'). Do NOT activate on inquiry.",
+      "value": [
+        "indian",
+        "chinese",
+        "italian",
+        "british",
+        "thai",
+        "turkish",
+        "vegetarian",
+        "seafood",
+        "french",
+        "mexican",
+        "japanese",
+        "korean",
+        "spanish",
+        "mediterranean",
+        "lebanese"
+      ]
+    },
+    "restaurant-pricerange": {
+      "type_desc": "The budget category or price level for the meal.",
+      "question_desc": "What specific price range or budget level is the user requesting?",
+      "contras_desc": "It indicates the budget category (cheap, moderate, expensive). NOT the hotel price range.",
+      "nli_desc": "[TRANSFER]: Concept is IDENTICAL to 'hotel-pricerange'. [INTERACTION]: Only activate if user SETS a budget. Do NOT activate on price inquiries.",
+      "value": [
+        "cheap",
+        "moderate",
+        "expensive"
+      ]
+    },
+    "restaurant-area": {
+      "type_desc": "The specific constraint on the location or part of town for the restaurant.",
+      "question_desc": "In which geographic area should the restaurant be located?",
+      "contras_desc": "It is a location constraint. NOT the cuisine type or restaurant name.",
+      "nli_desc": "[TRANSFER]: Logic SHARED with 'hotel-area'. [LOGIC]: Static location filter.",
+      "value": [
+        "centre",
+        "east",
+        "north",
+        "south",
+        "west"
+      ]
+    },
+    "restaurant-name": {
+      "type_desc": "The specific proper name or title of the restaurant.",
+      "question_desc": "What is the specific proper name of the restaurant entity?",
+      "contras_desc": "It is the proper name (e.g., 'Pizza Hut'). NOT the cuisine type or general area.",
+      "nli_desc": "[TRANSFER]: Logic SHARED with 'hotel-name'. [INTERACTION]: Distinguish 'Target' vs 'Reference'.",
+      "value": [
+        "(Open Slot) e.g. 'Pizza Hut'",
+        "(Open Slot) e.g. 'The Cambridge Chop House'"
+      ]
+    },
+    "restaurant-book time": {
+      "type_desc": "The specific time of day for the table reservation.",
+      "question_desc": "At what specific time does the user want the reservation to be set?",
+      "contras_desc": "It is the clock time for dining. NOT the booking day or number of people.",
+      "nli_desc": "[UNIQUE]: Event time logic. Distinct from travel times (taxi/train). Describes a static event.",
+      "value": [
+        "(Open Slot) e.g. '19:00'",
+        "(Open Slot) e.g. '13:30'"
+      ]
+    },
+    "restaurant-book day": {
+      "type_desc": "The day of the week for the restaurant reservation.",
+      "question_desc": "On which day does the user want to book the table?",
+      "contras_desc": "It is the reservation date. NOT the booking time or hotel booking day.",
+      "nli_desc": "[TRANSFER]: Concept is IDENTICAL to 'hotel-book day'. Logic: Extract the date.",
+      "value": [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ]
+    },
+    "restaurant-book people": {
+      "type_desc": "The number of diners included in the reservation.",
+      "question_desc": "How many people are included in the restaurant reservation?",
+      "contras_desc": "It is the party size for dining. NOT the number of people for a hotel or train booking.",
+      "nli_desc": "[TRANSFER]: Concept is IDENTICAL to 'hotel-book people'. Logic: Extract the count.",
+      "value": [
+        "(Open Slot) e.g. 2",
+        "(Open Slot) e.g. 5"
+      ]
+    },
+    "taxi-leaveat": {
+      "type_desc": "The requested pickup time for the taxi.",
+      "question_desc": "At what specific time does the user want the taxi to pick them up?",
+      "contras_desc": "It is the taxi pickup time. NOT the arrival deadline (arriveby) or train times.",
+      "nli_desc": "[TRANSFER]: Logic SIMILAR to 'train-leaveat'. [IMPLICIT]: If user books taxi for a departure event (e.g. 'leave the theatre'), INFER time from context. [LOGIC]: Focus on START of journey. Triggers: 'leave at', 'pick up at'.",
+      "value": [
+        "(Open Slot) e.g. '07:00'",
+        "(Open Slot) e.g. '15:45'"
+      ]
+    },
+    "taxi-arriveby": {
+      "type_desc": "The deadline time by which the taxi must reach the destination.",
+      "question_desc": "By what specific deadline time must the taxi arrive at the destination?",
+      "contras_desc": "It is the taxi arrival deadline. NOT the pickup time (leaveat) or train times.",
+      "nli_desc": "[TRANSFER]: Logic SIMILAR to 'train-arriveby'. [IMPLICIT]: If user books taxi to an event (e.g. restaurant booking), INFER `arriveby` from the event time. [LOGIC]: Focus on END of journey. Triggers: 'arrive by', 'get there by'.",
+      "value": [
+        "(Open Slot) e.g. '12:00'",
+        "(Open Slot) e.g. '20:15'"
+      ]
+    },
+    "taxi-destination": {
+      "type_desc": "The destination or drop-off location for the taxi ride.",
+      "question_desc": "To what location does the user want to go (drop-off)?",
+      "contras_desc": "It is the drop-off point. NOT the pickup point (departure) or train destination.",
+      "nli_desc": "[TRANSFER]: Logic SIMILAR to 'train-destination' (Endpoint). [LOGIC]: In 'between A and B', B is usually destination. Implies MOVEMENT TO a place. [INTERACTION]: Do NOT re-activate if user only updates time for existing destination.",
+      "value": [
+        "(Open Slot) e.g. 'Cambridge Station'",
+        "(Open Slot) e.g. 'Regent Street'"
+      ]
+    },
+    "taxi-departure": {
+      "type_desc": "The starting point or pickup location for the taxi ride.",
+      "question_desc": "From what location does the user want to leave (pickup)?",
+      "contras_desc": "It is the pickup point. NOT the destination (drop-off) or train departure.",
+      "nli_desc": "[TRANSFER]: Logic SIMILAR to 'train-departure' (Start point). [LOGIC]: In 'between A and B', A is usually departure. Implies MOVEMENT FROM a place. Distinct from user's current context statement.",
+      "value": [
+        "(Open Slot) e.g. 'Peking Restaurant'",
+        "(Open Slot) e.g. 'Grafton Hotel'"
+      ]
+    }
+  }

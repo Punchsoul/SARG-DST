@@ -1,0 +1,184 @@
+{
+  "hotel-pricerange": {
+    "type_desc": "price range indicating how cheap or expensive the option is.",
+    "concise_desc": "price range of the hotel.",
+    "question_desc": "What is the price range or budget level for this option?",
+    "contras_desc": "it is the budget level for staying at a hotel.NOT restaurant-pricerange (meal cost).Not hotel-stars (rating).",
+    "is_transferable": true
+  },
+  "hotel-type": {
+    "type_desc": "category or kind of place where the user can stay or visit.",
+    "concise_desc": "type of the hotel.",
+    "question_desc": "What type or category of place is the user interested in?",
+    "contras_desc": "it is the accommodation type (e.g., hotel/guesthouse).NOT attraction-type (sightseeing category).Not hotel-stars (rating).",
+    "is_transferable": false
+  },
+  "hotel-parking": {
+    "type_desc": "requirement or availability of parking at or near the place.",
+    "concise_desc": "whether have parking in the hotel.",
+    "question_desc": "Does the user need parking, or does the place provide parking?",
+    "contras_desc": "it indicates whether the hotel provides parking.NOT hotel-internet (wifi).Not hotel-area or hotel-name."
+  },
+  "hotel-book stay": {
+    "type_desc": "duration or length of stay measured in nights.",
+    "concise_desc": "number of stay for the hotel booking.",
+    "question_desc": "How many nights is the stay or booking for?",
+    "contras_desc": "it is the number of nights for the hotel booking.NOT hotel-book day (date) or hotel-book people (party size)."
+  },
+  "hotel-book day": {
+    "type_desc": "calendar day on which the booking or stay starts.",
+    "concise_desc": "day for the hotel booking.",
+    "question_desc": "On which day does the user want to start the booking?",
+    "contras_desc": "it is the date/day for the hotel booking.NOT hotel-book stay (nights) or hotel-book people (party size)."
+  },
+  "hotel-book people": {
+    "type_desc": "number of people included in the booking.",
+    "concise_desc": "number of people for the hotel booking",
+    "question_desc": "How many people are included in the booking?",
+    "contras_desc": "it is the number of people for the hotel booking.NOT restaurant-book people (table) or train-book people (tickets).Not hotel-book day or hotel-book stay."
+  },
+  "hotel-area": {
+    "type_desc": "spatial area or part of town where the place is located.",
+    "concise_desc": "area of the hotel.",
+    "question_desc": "In which area or part of town is the place located?",
+    "contras_desc": "it is the location area of the hotel.NOT restaurant-area or attraction-area (areas for dining/visiting).Not hotel-name or hotel-pricerange."
+  },
+  "hotel-stars": {
+    "type_desc": "quality rating expressed in stars.",
+    "concise_desc": "number of stars of the hotel.",
+    "question_desc": "What is the star rating or quality level of the place?",
+    "contras_desc": "it is the star rating/quality level of the hotel.NOT hotel-pricerange (budget).Not hotel-type (accommodation category)."
+  },
+  "hotel-internet": {
+    "type_desc": "requirement or availability of internet or wifi service.",
+    "concise_desc": "whether have internet in the hotel",
+    "question_desc": "Does the user require internet or wifi, or does the place offer it?",
+    "contras_desc": "it indicates whether the hotel provides internet/wifi.NOT hotel-parking.Not hotel-area or hotel-name."
+  },
+  "hotel-name": {
+    "type_desc": "specific name or title of the place.",
+    "concise_desc": "name of the hotel.",
+    "question_desc": "What is the specific name of the place?",
+    "contras_desc": "it is the proper name of a place to stay.NOT restaurant-name (a place to eat) and attraction-name (a place to visit).Not hotel-area or hotel-type."
+  },
+  "train-destination": {
+    "type_desc": "destination place or endpoint of the trip.",
+    "concise_desc": "location of destination of the train.",
+    "question_desc": "What is the destination or endpoint of the trip?",
+    "contras_desc": "it is the destination station/city where the train ends.NOT train-departure (start point).Not taxi-destination (taxi drop-off)."
+  },
+  "train-day": {
+    "type_desc": "calendar day on which the trip happens.",
+    "concise_desc": "day of the train.",
+    "question_desc": "On which day does the user want to travel?",
+    "contras_desc": "it is the travel day/date for the train.NOT hotel-book day or restaurant-book day (booking dates).Not train-leaveat/arriveby (times)."
+  },
+  "train-departure": {
+    "type_desc": "departure place or starting point of the trip.",
+    "concise_desc": "location of departure of the train",
+    "question_desc": "From where does the user want to depart?",
+    "contras_desc": "it is the origin station/city where the train starts.NOT train-destination (end point).Not taxi-departure (taxi pickup)."
+  },
+  "train-arriveby": {
+    "type_desc": "arrival deadline time by which the user must reach the destination.",
+    "concise_desc": "time of arrive by of the train.",
+    "question_desc": "By what time must the user arrive at the destination?",
+    "contras_desc": "it is the time by which the train should arrive.NOT train-leaveat (departure time).Not taxi-arriveby (taxi time)."
+  },
+  "train-book people": {
+    "type_desc": "number of passengers or tickets needed.",
+    "concise_desc": "number of people for the train booking.",
+    "question_desc": "How many people or tickets are needed for the trip?",
+    "contras_desc": "it is the number of people/tickets for the train booking.NOT restaurant-book people (table) or hotel-book people (hotel party).Not train-day (travel date)."
+  },
+  "train-leaveat": {
+    "type_desc": "departure time when the trip starts.",
+    "concise_desc": "time of leave at of the train.",
+    "question_desc": "At what time does the user want to leave or depart?",
+    "contras_desc": "it is the departure time of the train.NOT train-arriveby (arrival deadline).Not taxi-leaveat (taxi time)."
+  },
+  "attraction-area": {
+    "type_desc": "spatial area or part of town where the attraction is located.",
+    "concise_desc": "area of the attraction.",
+    "question_desc": "In which area or part of town is the attraction located?",
+    "contras_desc": "it is the location area of the attraction.NOT hotel-area or restaurant-area (areas for staying/eating).Not attraction-name or attraction-type."
+  },
+  "attraction-name": {
+    "type_desc": "specific name or title of the attraction.",
+    "concise_desc": "name of the attraction.",
+    "question_desc": "What is the specific name of the attraction?",
+    "contras_desc": "it is the proper name of a place to visit.NOT hotel-name (a place to stay) and restaurant-name (a place to eat).Not attraction-type or attraction-area."
+  },
+  "attraction-type": {
+    "type_desc": "category or kind of attraction or venue.",
+    "concise_desc": "type of the attraction.",
+    "question_desc": "What type or category of attraction is the user interested in?",
+    "contras_desc": "it is the category of a place to visit (e.g., museum/park).NOT hotel-type (accommodation) or restaurant-food (cuisine).Not attraction-name."
+  },
+  "restaurant-food": {
+    "type_desc": "cuisine or food style served at the place.",
+    "concise_desc": "food of the restaurant.",
+    "question_desc": "What type of cuisine or food is the user looking for?",
+    "contras_desc": "it is the cuisine/food type served.NOT restaurant-pricerange (budget) or restaurant-area (location).Not restaurant-name."
+  },
+  "restaurant-pricerange": {
+    "type_desc": "price range indicating how cheap or expensive the meal is.",
+    "concise_desc": "price range of the restaurant.",
+    "question_desc": "What is the price range or budget level for dining?",
+    "contras_desc": "it is the budget level for eating at a restaurant.NOT hotel-pricerange (accommodation cost).Not restaurant-food (cuisine)."
+  },
+  "restaurant-area": {
+    "type_desc": "spatial area or part of town where the dining place is located.",
+    "concise_desc": "area of the restaurant.",
+    "question_desc": "In which area or part of town is the place to eat located?",
+    "contras_desc": "it is the location area of the restaurant.NOT hotel-area or attraction-area (areas for staying/visiting).Not restaurant-name or restaurant-food."
+  },
+  "restaurant-name": {
+    "type_desc": "specific name or title of the dining place.",
+    "concise_desc": "name of the restaurant.",
+    "question_desc": "What is the specific name of the restaurant or place to eat?",
+    "contras_desc": "it is the proper name of a place to eat.NOT hotel-name (a place to stay) and attraction-name (a place to visit).Not restaurant-food or restaurant-area."
+  },
+  "restaurant-book time": {
+    "type_desc": "time of day for the dining reservation.",
+    "concise_desc": "time for the restaurant booking.",
+    "question_desc": "At what time does the user want to have the meal or reservation?",
+    "contras_desc": "it is the time for the restaurant reservation.NOT restaurant-book day (date) or restaurant-book people (party size).Not train-leaveat/arriveby (travel times)."
+  },
+  "restaurant-book day": {
+    "type_desc": "calendar day for the dining reservation.",
+    "concise_desc": "day for the restaurant booking.",
+    "question_desc": "On which day does the user want to book the meal or table?",
+    "contras_desc": "it is the date/day for the restaurant reservation.NOT restaurant-book time (clock time) or restaurant-book people (party size).Not hotel-book day (hotel date)."
+  },
+  "restaurant-book people": {
+    "type_desc": "number of diners for the reservation.",
+    "concise_desc": "number of people for the restaurant booking.",
+    "question_desc": "How many people is the reservation or table for?",
+    "contras_desc": "it is the number of people for the restaurant reservation.NOT hotel-book people (hotel party) or train-book people (tickets).Not restaurant-book day or restaurant-book time."
+  },
+  "taxi-leaveat": {
+    "type_desc": "pickup time when the ride should start.",
+    "concise_desc": "time of leave at of the taxi.",
+    "question_desc": "At what time should the ride pick up the user?",
+    "contras_desc": "it is the time the taxi should leave.NOT taxi-arriveby (arrival deadline).Not train-leaveat (train time)."
+  },
+  "taxi-arriveby": {
+    "type_desc": "arrival deadline time by which the ride must reach the destination.",
+    "concise_desc": "arrive by of the taxi.",
+    "question_desc": "By what time must the ride reach the destination?",
+    "contras_desc": "it is the time by which the taxi should arrive.NOT taxi-leaveat (departure time).Not train-arriveby (train time)."
+  },
+  "taxi-destination": {
+    "type_desc": "destination place or drop-off location of the ride.",
+    "concise_desc": "location of destination of the taxi.",
+    "question_desc": "Where does the user want to go or be dropped off?",
+    "contras_desc": "it is the taxi drop-off location (end point).NOT taxi-departure (pickup).Not train-destination (train end)."
+  },
+  "taxi-departure": {
+    "type_desc": "pickup place or starting location of the ride.",
+    "concise_desc": "location of departure of the taxi.",
+    "question_desc": "From where should the ride pick up the user?",
+    "contras_desc": "it is the taxi pickup location (start point).NOT taxi-destination (drop-off).Not train-departure (train origin)."
+  } 
+}
